@@ -16,13 +16,15 @@
 <div class="list-group">
     @foreach (var node in nodes)
     {
-        var cssClasses = new List<string>();
-        cssClasses.Add("list-group-item");
+        if (node.IsVisible) { 
+            var cssClasses = new List<string>();
+            cssClasses.Add("list-group-item");
 
-        if (node.TabID == @Dnn.Tab.TabID) { cssClasses.Add("active"); }
-        var classString = new HtmlString((cssClasses.Count == 0) ? "" :
-                            (" class=\"" + String.Join(" ", cssClasses.ToArray()) + "\""));
+            if (node.TabID == @Dnn.Tab.TabID) { cssClasses.Add("active"); }
+            var classString = new HtmlString((cssClasses.Count == 0) ? "" :
+                                (" class=\"" + String.Join(" ", cssClasses.ToArray()) + "\""));
 
-        <a href="@node.FullUrl" @classString>@node.TabName</a>
+            <a href="@node.FullUrl" @classString>@node.TabName</a>
+        }
     }
 </div>
